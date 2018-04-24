@@ -1,4 +1,11 @@
-r"""
+import sys
+import os
+
+#os.chdir("..")
+
+#sys.path.append("..")
+print os.getcwd()
+"""
 Strip leading byte-order-mark from utf-8 files.
 """
 
@@ -20,6 +27,7 @@ def bomstrip(string):
     return(string[3:])
   else:
     return(string)
-    
-uzzah = open('../tests/test2.csv', "r+b")
+
+
+uzzah = open('C:\Users\mmann\Documents\GitHub\radioxenon_ml\radioxenon_ml\test_files\test2.txt')
 bomstrip(uzzah)            #Opens file)
