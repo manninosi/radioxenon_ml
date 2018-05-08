@@ -1,6 +1,6 @@
 import sys
 import os
-
+import numpy as np
 #os.chdir("..")
 
 #sys.path.append("..")
@@ -29,5 +29,5 @@ def bomstrip(string):
     return(string)
 
 
-uzzah = open('C:\Users\mmann\Documents\GitHub\radioxenon_ml\radioxenon_ml\test_files\test2.txt')
+uzzah = open('test_files\test2.csv')
 bomstrip(uzzah)            #Opens file)
