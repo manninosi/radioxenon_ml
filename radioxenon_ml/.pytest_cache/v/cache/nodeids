@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 []
+=======
+[
+  "test_files/test_functions.py::test_import_sizes",
+  "test_files/test_functions.py::test_two_matrices"
+]
+>>>>>>> 1007c505fed0db5596d7f7bb26b8ffc8349949d3
