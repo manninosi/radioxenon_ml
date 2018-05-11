@@ -3,43 +3,16 @@ Created on Sun April 22 13:24:00 2018
 
 @author: Steven Czyz
 """
-<<<<<<< HEAD
+
 import sys
 import os
 sys.path.append("..")
 #print os.getcwd()
 import array_import as arr_im
 import numpy as np
-
-def form_matrix(n):
-
-    nrowarr = np.empty(n+1, dtype=int)    #array for # of rows in each array
-    ncolarr = np.empty(n+1, dtype=int)    #array for # of columns in each array
-
-    for i in range(1,n+1):
-        huzzah = open('test_files\test'+str(i)+'.csv')               #Opens file
-        print huzzah
-        coin_arr = arr_im.load_2d_coinc_spectrum(huzzah)        #loads the array
-        columnvec, nrowarr[i-1], ncolarr[i-1] = arr_im.vector_spectrum(coin_arr)    #turns into column
-
-        if i==1:                        #efficiency of memory
-            thearr = np.empty([(nrowarr[i-1]*ncolarr[i-1]),n])
-
-        thearr[:,i-1] = columnvec[:,0]      #assemble the matrix
-
-    print("Simulated spectra have been placed into the Maximum Liklihood Matrix")
-
-    huzzah = open('test_files\test'+str(n+1)+'.csv')               #Opens experimental spectrum
-    coin_arr = arr_im.load_2d_coinc_spectrum(huzzah)          #loads the array
-    experimental_vec, nrowarr[n], ncolarr[n] = arr_im.vector_spectrum(coin_arr)    #turns into column
-    print("Experimental have been placed into the Maximum Liklihood Matrix")
-
-    return thearr, experimental_vec, nrowarr, ncolarr
-
-form_matrix(2)
-=======
 from radioxenon_ml.read_in import array_import as arr_im
-import numpy as np
+
+
 
 
 def form_matrix(spectrum_file_location, n=5, offset=0):
@@ -49,27 +22,26 @@ def form_matrix(spectrum_file_location, n=5, offset=0):
         1 column array for # of columns in each file
         1 column array for the single experimental spectrum
         1 nx5 array for the simulation spectra + background
-    """    
+    """
     nrowarr = np.empty(n+1, dtype=np.int32)    #define array for # of rows in each array
     ncolarr = np.empty(n+1, dtype=np.int32)    #define array for # of columns in each array
-    
+
     for i in range(1,n+1):
-        huzzah = open(spectrum_file_location+str(i+offset)+'.csv')               
+        huzzah = open(spectrum_file_location+str(i+offset)+'.csv')
         coin_arr = arr_im.load_2d_coinc_spectrum(huzzah)                            #loads the array
         columnvec, nrowarr[i-1], ncolarr[i-1] = arr_im.vector_spectrum(coin_arr)    #turns into column
-        
-        if i==1:                        
+
+        if i==1:
             thearr = np.empty([(nrowarr[i-1]*ncolarr[i-1]),n], dtype=np.int32)           #define array for simulation data
-        
+
         thearr[:,i-1] = columnvec[:,0]      #assemble the matrix one column at a time
-        
+
     print("\nSimulated spectra have been placed into the Maximum Liklihood Matrix")
-    
+
     huzzah = open('radioxenon_ml/test_files/test'+str(n+1+offset)+'.csv')                                #Opens experimental spectrum
     coin_arr = arr_im.load_2d_coinc_spectrum(huzzah)                                #loads the array
     experimental_vec = np.empty(columnvec.shape[0], dtype=int)                      #defines experimental array
     experimental_vec, nrowarr[n], ncolarr[n] = arr_im.vector_spectrum(coin_arr)     #turns into column
     print("\nExperimental have been placed into the Maximum Liklihood Matrix")
-        
+
     return thearr, experimental_vec
->>>>>>> 1007c505fed0db5596d7f7bb26b8ffc8349949d3
